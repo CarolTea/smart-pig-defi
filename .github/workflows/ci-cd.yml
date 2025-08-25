@@ -31,20 +31,16 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Run frontend linting
-        working-directory: ./frontend
-        run: npm run lint
+        run: npm run lint:frontend
 
       - name: Run frontend type checking
-        working-directory: ./frontend
-        run: npm run type-check
+        run: npm run type-check:frontend
 
       - name: Run frontend tests
-        working-directory: ./frontend
-        run: npm run test:ci
+        run: npm run test:frontend
 
       - name: Build frontend
-        working-directory: ./frontend
-        run: npm run build
+        run: npm run build:frontend
 
       - name: Upload frontend coverage
         uses: codecov/codecov-action@v4
@@ -70,24 +66,19 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Run backend linting
-        working-directory: ./backend
-        run: npm run lint
+        run: npm run lint:backend
 
       - name: Run backend type checking
-        working-directory: ./backend
-        run: npm run type-check
+        run: npm run type-check:backend
 
       - name: Run backend tests
-        working-directory: ./backend
-        run: npm run test:ci
+        run: npm run test:backend
 
       - name: Run backend e2e tests
-        working-directory: ./backend
-        run: npm run test:e2e
+        run: npm run test:e2e --prefix backend
 
       - name: Build backend
-        working-directory: ./backend
-        run: npm run build
+        run: npm run build:backend
 
       - name: Upload backend coverage
         uses: codecov/codecov-action@v4
