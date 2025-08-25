@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CarolTea/smart-pig-defi"
+    "url": "https://github.com/guilhermejansen/smart-pig-defi"
   },
   "dependencies": {
     "@stellar/stellar-sdk": "^14.1.0",
