@@ -22,7 +22,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'CarolTea', // Usually your GitHub org/user name.
+  organizationName: 'guilhermejansen', // Usually your GitHub org/user name.
   projectName: 'smart-pig-defi', // Usually your repo name.
 
   onBrokenLinks: 'warn',
@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/CarolTea/smart-pig-defi/tree/main/docs/',
+            'https://github.com/guilhermejansen/smart-pig-defi/tree/main/docs/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
         },
@@ -58,7 +58,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/CarolTea/smart-pig-defi/tree/main/docs/',
+            'https://github.com/guilhermejansen/smart-pig-defi/tree/main/docs/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -109,7 +109,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/CarolTea/smart-pig-defi',
+          href: 'https://github.com/guilhermejansen/smart-pig-defi',
           label: 'GitHub',
           position: 'right',
         },

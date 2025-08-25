@@ -371,13 +371,13 @@ release-dry: ## Dry run semantic release (preview)
 release: ## Create a new release (automated versioning)
 	@echo "$(YELLOW)Creating new release...$(NC)"
 	@echo "$(RED)Warning: This will create a new release and push to repository$(NC)"
-	@read -p "Are you sure? [y/N] " -n 1 -r; \\
-	echo; \\
-	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \\
-		npm run release; \\
-		echo "$(GREEN)✓ Release created successfully$(NC)"; \\
-	else \\
-		echo "$(YELLOW)Release cancelled$(NC)"; \\
+	@read -p "Are you sure? [y/N] " -n 1 -r; \
+	echo; \
+	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \
+		npm run release; \
+		echo "$(GREEN)✓ Release created successfully$(NC)"; \
+	else \
+		echo "$(YELLOW)Release cancelled$(NC)"; \
 	fi
 
 release-alpha: ## Create an alpha pre-release

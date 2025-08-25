@@ -21,7 +21,7 @@ spec:
         - name: smart-pig-registry-secret
       containers:
         - name: frontend
-          image: ghcr.io/caroltea/smart-pig-defi-frontend:IMAGE_TAG
+          image: ghcr.io/guilhermejansen/smart-pig-defi-frontend:IMAGE_TAG
           ports:
             - containerPort: 80
               name: http

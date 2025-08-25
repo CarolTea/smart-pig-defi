@@ -10,7 +10,7 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/CarolTea/smart-pig-defi",
+  "repositoryUrl": "https://github.com/guilhermejansen/smart-pig-defi",
   "plugins": [
     [
       "@semantic-release/commit-analyzer",

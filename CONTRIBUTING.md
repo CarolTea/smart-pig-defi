@@ -46,7 +46,7 @@ Before you begin, ensure you have the following installed:
 
    ```bash
    # Click the "Fork" button on GitHub or use GitHub CLI
-   gh repo fork CarolTea/smart-pig-defi
+   gh repo fork guilhermejansen/smart-pig-defi
    ```
 
 2. **Clone your fork**
@@ -59,7 +59,7 @@ Before you begin, ensure you have the following installed:
 3. **Add upstream remote**
 
    ```bash
-   git remote add upstream https://github.com/CarolTea/smart-pig-defi.git
+   git remote add upstream https://github.com/guilhermejansen/smart-pig-defi.git
    ```
 
 4. **Install dependencies**
@@ -102,10 +102,10 @@ Before you begin, ensure you have the following installed:
 
 ### 1. 🎯 Choose What to Work On
 
-- Check our [Issues](https://github.com/CarolTea/smart-pig-defi/issues) for open tasks
+- Check our [Issues](https://github.com/guilhermejansen/smart-pig-defi/issues) for open tasks
 - Look for issues labeled `good first issue` if you're new
-- Check our [Project Board](https://github.com/CarolTea/smart-pig-defi/projects) for roadmap items
-- Join [Discussions](https://github.com/CarolTea/smart-pig-defi/discussions) to propose new ideas
+- Check our [Project Board](https://github.com/guilhermejansen/smart-pig-defi/projects) for roadmap items
+- Join [Discussions](https://github.com/guilhermejansen/smart-pig-defi/discussions) to propose new ideas
 
 ### 2. 🌿 Create a Branch
 
@@ -620,8 +620,8 @@ Thank you for contributing to Smart Pig DeFi! Your contributions help make decen
 
 ### 📞 Questions?
 - Check our [FAQ](FAQ.md)
-- Search existing [issues](https://github.com/CarolTea/smart-pig-defi/issues)
-- Start a [discussion](https://github.com/CarolTea/smart-pig-defi/discussions)
+- Search existing [issues](https://github.com/guilhermejansen/smart-pig-defi/issues)
+- Start a [discussion](https://github.com/guilhermejansen/smart-pig-defi/discussions)
 - Contact maintainers: maintainers@smartpig.com
 
 ---

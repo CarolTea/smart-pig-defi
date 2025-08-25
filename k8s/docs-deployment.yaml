@@ -35,7 +35,7 @@ spec:
         fsGroup: 1001
       containers:
       - name: docs
-        image: ghcr.io/carolTea/smart-pig-defi-docs:IMAGE_TAG
+        image: ghcr.io/guilhermejansen/smart-pig-defi-docs:IMAGE_TAG
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

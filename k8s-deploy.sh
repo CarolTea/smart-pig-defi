@@ -6,8 +6,8 @@
 set -e
 
 NAMESPACE="smart-pig-defi"
-FRONTEND_IMAGE="ghcr.io/caroltea/smart-pig-defi-frontend"
-BACKEND_IMAGE="ghcr.io/caroltea/smart-pig-defi-backend"
+FRONTEND_IMAGE="ghcr.io/guilhermejansen/smart-pig-defi-frontend"
+BACKEND_IMAGE="ghcr.io/guilhermejansen/smart-pig-defi-backend"
 
 # Colors for output
 RED='\033[0;31m'
