@@ -31,23 +31,23 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install frontend dependencies
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm ci --legacy-peer-deps --ignore-scripts
 
       - name: Run frontend linting
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run lint
 
       - name: Run frontend type checking
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run type-check
 
       - name: Run frontend tests
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run test:ci
 
       - name: Build frontend
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run build
 
       - name: Upload frontend coverage
@@ -74,27 +74,27 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install backend dependencies
-        working-directory: ./backend
+        working-directory: backend
         run: npm ci --ignore-scripts
 
       - name: Run backend linting
-        working-directory: ./backend
+        working-directory: backend
         run: npm run lint
 
       - name: Run backend type checking
-        working-directory: ./backend
+        working-directory: backend
         run: npm run type-check
 
       - name: Run backend tests
-        working-directory: ./backend
+        working-directory: backend
         run: npm run test:ci
 
       - name: Run backend e2e tests
-        working-directory: ./backend
+        working-directory: backend
         run: npm run test:e2e
 
       - name: Build backend
-        working-directory: ./backend
+        working-directory: backend
         run: npm run build
 
       - name: Upload backend coverage
@@ -121,15 +121,15 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install docs dependencies
-        working-directory: ./docs
+        working-directory: docs
         run: npm ci --ignore-scripts
 
       - name: Run docs type checking
-        working-directory: ./docs
+        working-directory: docs
         run: npm run typecheck
 
       - name: Build documentation
-        working-directory: ./docs
+        working-directory: docs
         run: npm run build
 
       - name: Upload docs build artifacts
@@ -284,8 +284,8 @@ jobs:
       - name: Build and push frontend Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
+          context: frontend
+          file: frontend/Dockerfile
           push: true
           tags: ${{ steps.meta-frontend.outputs.tags }}
           labels: ${{ steps.meta-frontend.outputs.labels }}
@@ -298,8 +298,8 @@ jobs:
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
+          context: backend
+          file: backend/Dockerfile
           push: true
           tags: ${{ steps.meta-backend.outputs.tags }}
           labels: ${{ steps.meta-backend.outputs.labels }}
@@ -312,8 +312,8 @@ jobs:
       - name: Build and push docs Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./docs
-          file: ./docs/Dockerfile
+          context: docs
+          file: docs/Dockerfile
           push: true
           tags: ${{ steps.meta-docs.outputs.tags }}
           labels: ${{ steps.meta-docs.outputs.labels }}
