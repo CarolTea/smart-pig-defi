@@ -52,7 +52,7 @@
     "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
     "changelog:first": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
     "commit": "git-cz",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
