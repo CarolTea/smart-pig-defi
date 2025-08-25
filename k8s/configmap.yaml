@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smart-pig-config
+  namespace: smart-pig-defi
+data:
+  # Frontend configuration
+  VITE_API_URL: "https://api.smartpig.com"
+  VITE_STELLAR_NETWORK: "public"
+  
+  # Backend configuration
+  NODE_ENV: "production"
+  PORT: "3000"
+  STELLAR_NETWORK: "public"
+  
+  # Database configuration
+  POSTGRES_DB: "smart_pig_db"
+  POSTGRES_USER: "smart_pig_user"
+  
+  # Redis configuration
+  REDIS_HOST: "smart-pig-redis"
+  REDIS_PORT: "6379"

@@ -1,0 +1,210 @@
+---
+name: 📚 Documentation
+about: Improve documentation, guides, or help content
+title: '[DOCS] '
+labels: ['documentation', 'needs-triage']
+assignees: ''
+---
+
+## 📚 Documentation Request
+
+### 📝 Type of Documentation
+**What type of documentation needs attention?**
+
+- [ ] 📖 User Documentation
+  - [ ] User guide/manual
+  - [ ] FAQ section
+  - [ ] Troubleshooting guide
+  - [ ] Feature tutorials
+  - [ ] Getting started guide
+  
+- [ ] 🔧 Technical Documentation
+  - [ ] API documentation
+  - [ ] Code comments
+  - [ ] Architecture documentation
+  - [ ] Database schema docs
+  - [ ] Deployment guides
+  
+- [ ] 👨‍💻 Developer Documentation
+  - [ ] Contributing guidelines
+  - [ ] Development setup
+  - [ ] Coding standards
+  - [ ] Testing guidelines
+  - [ ] Release procedures
+  
+- [ ] 🚀 Deployment Documentation
+  - [ ] Docker setup
+  - [ ] Kubernetes deployment
+  - [ ] CI/CD pipeline docs
+  - [ ] Environment configuration
+  - [ ] Monitoring setup
+
+## 🎯 Specific Request
+
+### 📍 Location
+**Where is this documentation needed or what existing docs need updating?**
+- **File/Location:** 
+- **Section:** 
+- **URL (if applicable):** 
+
+### 📋 Current Issue
+**What's wrong with the current documentation or what's missing?**
+
+- [ ] Information is outdated
+- [ ] Information is missing
+- [ ] Instructions are unclear
+- [ ] Examples are needed
+- [ ] Screenshots/diagrams needed
+- [ ] Technical details incomplete
+- [ ] Accessibility improvements needed
+- [ ] Translation needed
+
+### ✅ Proposed Improvement
+**What specifically needs to be added, updated, or improved?**
+
+## 🎯 Target Audience
+**Who is the primary audience for this documentation?**
+
+- [ ] 👤 End Users
+  - [ ] DeFi beginners
+  - [ ] Experienced crypto users
+  - [ ] Brazilian PIX users
+  - [ ] Passkey/WebAuthn users
+
+- [ ] 👨‍💻 Developers
+  - [ ] Frontend developers
+  - [ ] Backend developers
+  - [ ] DevOps engineers
+  - [ ] Blockchain developers
+  - [ ] Contributors/open source
+
+- [ ] 🏢 Business Users
+  - [ ] Product managers
+  - [ ] Business analysts
+  - [ ] Support team
+  - [ ] Marketing team
+
+## 📱 Platform Considerations
+**Which platforms should this documentation cover?**
+
+- [ ] Web application
+- [ ] Mobile browsers
+- [ ] API integration
+- [ ] Command line tools
+- [ ] Development environment
+
+## 🌍 Languages
+**Which languages should this documentation support?**
+
+- [ ] English (primary)
+- [ ] Portuguese (for PIX integration)
+- [ ] Spanish
+- [ ] Other: ___________
+
+## 📊 Content Requirements
+
+### 📝 Written Content
+- [ ] Step-by-step instructions
+- [ ] Code examples
+- [ ] Configuration samples
+- [ ] Troubleshooting steps
+- [ ] Best practices
+- [ ] Security considerations
+- [ ] Performance tips
+
+### 🎨 Visual Content
+- [ ] Screenshots
+- [ ] Diagrams/flowcharts
+- [ ] Video tutorials
+- [ ] Interactive examples
+- [ ] Architecture diagrams
+- [ ] User flow diagrams
+
+### 🔧 Technical Specifications
+- [ ] API endpoint documentation
+- [ ] Parameter descriptions
+- [ ] Response examples
+- [ ] Error codes
+- [ ] Rate limiting info
+- [ ] Authentication details
+
+## 📚 Existing Resources
+**Are there any existing resources that can be referenced or need updating?**
+
+- **Internal docs:** 
+- **External references:** 
+- **Related issues:** 
+
+## ✅ Definition of Done
+**How will we know this documentation task is complete?**
+
+- [ ] Content is written and reviewed
+- [ ] Technical accuracy verified
+- [ ] Screenshots/visuals added
+- [ ] Examples tested and working
+- [ ] Links verified
+- [ ] Formatting consistent
+- [ ] Accessibility checked
+- [ ] Published/deployed
+- [ ] Stakeholders notified
+
+## 🔄 Maintenance
+**How should this documentation be maintained?**
+
+- [ ] Needs regular updates
+- [ ] Should be version-controlled
+- [ ] Requires technical review
+- [ ] Needs business approval
+- [ ] Should be automated (if possible)
+
+## 📅 Priority & Timeline
+
+### Priority Level
+- [ ] 🔴 Critical (Blocking users/developers)
+- [ ] 🟠 High (Important for UX)
+- [ ] 🟡 Medium (Helpful improvement)
+- [ ] 🟢 Low (Nice to have)
+
+### Urgency
+- [ ] Immediate (ASAP)
+- [ ] This week
+- [ ] This month
+- [ ] No specific deadline
+
+## 🔗 Related Components
+**Which parts of the Smart Pig DeFi system does this documentation relate to?**
+
+- [ ] Frontend (React/Vite)
+- [ ] Backend (NestJS)
+- [ ] Database (PostgreSQL)
+- [ ] Stellar Integration
+- [ ] PIX Payment System
+- [ ] Passkey Authentication
+- [ ] Docker/Containerization
+- [ ] Kubernetes Deployment
+- [ ] CI/CD Pipeline
+- [ ] Security Features
+
+## 💡 Additional Context
+**Any additional information that would be helpful:**
+
+### Current Pain Points
+**What problems are users/developers currently experiencing due to missing/poor documentation?**
+
+### Success Metrics
+**How will we measure the success of this documentation improvement?**
+
+- [ ] Reduced support tickets
+- [ ] Faster developer onboarding
+- [ ] Improved user satisfaction
+- [ ] Fewer implementation errors
+- [ ] Better adoption rates
+
+---
+
+**📝 Notes for Documentation Team:**
+- Ensure consistency with existing documentation style
+- Follow accessibility guidelines
+- Include relevant code examples
+- Test all instructions before publishing
+- Consider SEO optimization for user-facing docs

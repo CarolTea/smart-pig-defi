@@ -1,0 +1,256 @@
+---
+name: ❓ Question / Support
+about: Ask a question or get help with Smart Pig DeFi
+title: '[QUESTION] '
+labels: ['question', 'needs-triage']
+assignees: ''
+---
+
+## ❓ Question / Support Request
+
+### 🎯 Question Type
+**What type of help do you need?**
+
+- [ ] 🔧 **Technical Support**
+  - [ ] Setup/installation help
+  - [ ] Configuration issues
+  - [ ] API usage questions
+  - [ ] Development environment
+  - [ ] Troubleshooting
+
+- [ ] 💡 **How-to Questions**
+  - [ ] Feature usage
+  - [ ] Best practices
+  - [ ] Implementation guidance
+  - [ ] Integration help
+  - [ ] Workflow questions
+
+- [ ] 🏗 **Architecture/Design**
+  - [ ] System architecture
+  - [ ] Database design
+  - [ ] API design
+  - [ ] Security considerations
+  - [ ] Performance optimization
+
+- [ ] 💰 **DeFi/Blockchain**
+  - [ ] Stellar network questions
+  - [ ] Wallet integration
+  - [ ] Transaction handling
+  - [ ] Smart contracts
+  - [ ] Asset management
+
+- [ ] 💳 **PIX Integration**
+  - [ ] PIX payment setup
+  - [ ] Brazilian banking integration
+  - [ ] Compliance questions
+  - [ ] Transaction processing
+
+- [ ] 🔒 **Security/Authentication**
+  - [ ] Passkey implementation
+  - [ ] User authentication
+  - [ ] Security best practices
+  - [ ] Data protection
+
+## 📝 Your Question
+**Please describe your question in detail:**
+
+### Specific Question
+**What exactly do you want to know or need help with?**
+
+### Context
+**Provide context about what you're trying to accomplish:**
+
+### What You've Tried
+**What have you already tried or researched?**
+
+- [ ] Searched existing documentation
+- [ ] Checked GitHub issues
+- [ ] Reviewed code examples
+- [ ] Consulted API documentation
+- [ ] Asked in community forums
+
+### Resources Consulted
+**Which resources have you already looked at?**
+
+- **Documentation sections:** _____
+- **Code repositories:** _____
+- **External resources:** _____
+- **Community discussions:** _____
+
+## 🎯 Your Role/Context
+**Help us understand your perspective:**
+
+### Your Role
+- [ ] 👨‍💻 Developer (Frontend)
+- [ ] 👨‍💻 Developer (Backend)
+- [ ] 🏗 DevOps Engineer
+- [ ] 📊 Data Analyst
+- [ ] 📋 Product Manager
+- [ ] 👤 End User
+- [ ] 🎓 Student/Learning
+- [ ] 🔬 Researcher
+- [ ] Other: _____
+
+### Experience Level
+- [ ] 🟢 Beginner (new to DeFi/blockchain)
+- [ ] 🟡 Intermediate (some experience)
+- [ ] 🟠 Advanced (experienced developer)
+- [ ] 🔴 Expert (deep technical knowledge)
+
+### Technical Background
+**What's your experience with relevant technologies?**
+
+- **React/Frontend:** ⭐⭐⭐⭐⭐
+- **Node.js/Backend:** ⭐⭐⭐⭐⭐
+- **Blockchain/DeFi:** ⭐⭐⭐⭐⭐
+- **Docker/DevOps:** ⭐⭐⭐⭐⭐
+- **Brazilian payments:** ⭐⭐⭐⭐⭐
+
+## 🔧 Technical Environment
+**If this is a technical question, please provide environment details:**
+
+### Development Environment
+- **Operating System:** [e.g., Windows 11, macOS 14, Ubuntu 22.04]
+- **Node.js Version:** [e.g., 20.x.x]
+- **Package Manager:** [e.g., npm, yarn, pnpm]
+- **IDE/Editor:** [e.g., VS Code, WebStorm, Vim]
+
+### Smart Pig DeFi Setup
+- **Installation Method:** [e.g., Docker, Local setup, Cloud deployment]
+- **Environment:** [e.g., Development, Staging, Production]
+- **Version/Branch:** [e.g., main, develop, v1.2.0]
+
+### Related Technology Stack
+- **Frontend Framework:** [React version]
+- **Backend Framework:** [NestJS version]
+- **Database:** [PostgreSQL version]
+- **Container Platform:** [Docker, Kubernetes]
+
+## 📋 Specific Details
+**Provide specific information related to your question:**
+
+### Code Examples
+**If relevant, include code snippets or configuration:**
+
+```typescript
+// Include relevant code here
+```
+
+### Error Messages
+**If you're experiencing errors, include the full error message:**
+
+```
+Paste error messages here
+```
+
+### Expected vs Actual Behavior
+**If this relates to unexpected behavior:**
+
+**Expected:** What you expected to happen
+**Actual:** What actually happened
+
+### Configuration
+**Include relevant configuration files or settings:**
+
+```yaml
+# Include relevant configuration
+```
+
+## 🎯 Desired Outcome
+**What would a helpful answer look like?**
+
+- [ ] Step-by-step instructions
+- [ ] Code examples
+- [ ] Links to documentation
+- [ ] Best practice recommendations
+- [ ] Architecture guidance
+- [ ] Security recommendations
+- [ ] Performance tips
+
+### Success Criteria
+**How will you know your question has been answered?**
+
+## 🔗 Related Information
+**Include any related links or references:**
+
+- **GitHub Issues:** 
+- **Documentation Links:** 
+- **External Resources:** 
+- **Community Discussions:** 
+
+## 📱 Target Platform
+**If relevant, which platform are you targeting?**
+
+- [ ] Web Application
+- [ ] Mobile Browser
+- [ ] Desktop Application
+- [ ] API Integration
+- [ ] Command Line Tool
+
+## 🌍 Geographic/Regulatory Context
+**If relevant to PIX or regulatory questions:**
+
+- **Country/Region:** 
+- **Regulatory Requirements:** 
+- **Banking Integration Needs:** 
+
+## ⏰ Timeline
+**Is this question time-sensitive?**
+
+- [ ] 🔴 Urgent (blocking current work)
+- [ ] 🟠 Soon (needed this week)
+- [ ] 🟡 Moderate (needed this month)
+- [ ] 🟢 No rush (learning/planning)
+
+## 💬 Additional Context
+**Any other information that might be helpful:**
+
+### Use Case
+**Describe the broader use case or project you're working on:**
+
+### Constraints
+**Are there any specific constraints or requirements?**
+
+- **Technical constraints:** 
+- **Business constraints:** 
+- **Time constraints:** 
+- **Budget constraints:** 
+
+### Community Benefit
+**Could the answer to this question help other community members?**
+
+- [ ] Yes, this is likely a common question
+- [ ] Maybe, it might help some people
+- [ ] No, this is very specific to my situation
+
+---
+
+## 📚 For Community Members Answering
+
+### Answer Quality Guidelines
+When answering questions, please:
+
+- [ ] Provide clear, step-by-step instructions
+- [ ] Include working code examples
+- [ ] Link to relevant documentation
+- [ ] Explain the reasoning behind recommendations
+- [ ] Consider the questioner's experience level
+- [ ] Test your suggestions before posting
+- [ ] Follow up if the solution works
+
+### Answer Types
+- [ ] 💡 Direct answer with solution
+- [ ] 📚 Educational explanation
+- [ ] 🔗 Resource/documentation links
+- [ ] 🔧 Troubleshooting steps
+- [ ] 💭 Design/architecture guidance
+- [ ] ⚠️ Important warnings/considerations
+
+---
+
+**🤝 Community Guidelines:**
+- Be respectful and helpful
+- Search existing issues before asking
+- Provide enough context for others to help
+- Mark the answer that solves your problem
+- Consider contributing back with documentation improvements

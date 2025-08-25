@@ -1,46 +1,546 @@
-# Getting Started with Create React App
+# Smart Pig DeFi - Complete CI/CD & Deployment Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🐷💰 A comprehensive DeFi application with modern CI/CD pipeline, Docker containerization, and Kubernetes deployment.
 
-## Available Scripts
+## 🚀 Quick Start
 
-In the project directory, you can run:
+### Prerequisites
 
-### `npm start`
+- Node.js 20+
+- Docker & Docker Compose
+- Kubernetes cluster (for production)
+- Make (optional, for convenience)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Development Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Clone and install dependencies**
 
-### `npm test`
+   ```bash
+   git clone <repository>
+   cd smart-pig-defi
+   make install
+   # or manually:
+   # cd frontend && npm ci --legacy-peer-deps
+   # cd ../backend && npm ci
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Start development environment**
 
-### `npm run build`
+   ```bash
+   # Using Make
+   make dev
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   # Using Docker Compose
+   make docker-dev
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   # Manual start
+   cd backend && npm run start:dev &
+   cd frontend && npm run dev
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Run tests**
+   ```bash
+   make test
+   # or separately:
+   make test-frontend
+   make test-backend
+   ```
 
-### `npm run eject`
+## 📁 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+smart-pig-defi/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml              # GitHub Actions CI/CD pipeline
+├── frontend/                      # React + Vite + TypeScript
+│   ├── src/
+│   ├── Dockerfile                 # Production container
+│   ├── Dockerfile.dev             # Development container
+│   ├── nginx.conf                 # Nginx configuration
+│   ├── jest.config.js             # Test configuration
+│   └── package.json
+├── backend/                       # NestJS + TypeScript
+│   ├── src/
+│   │   └── health/                # Health check endpoints
+│   ├── Dockerfile                 # Production container
+│   ├── Dockerfile.dev             # Development container
+│   ├── healthcheck.js             # Container health script
+│   └── package.json
+├── k8s/                          # Kubernetes manifests
+│   ├── namespace.yaml
+│   ├── configmap.yaml
+│   ├── secrets.yaml
+│   ├── frontend-deployment.yaml
+│   ├── backend-deployment.yaml
+│   ├── postgres-deployment.yaml
+│   ├── redis-deployment.yaml
+│   └── ingress.yaml
+├── docker-compose.yml            # Production containers
+├── docker-compose.dev.yml        # Development containers
+├── docker-compose.override.yml   # Production optimizations
+├── Makefile                      # Development commands
+├── k8s-deploy.sh                 # Kubernetes deployment script
+├── .env.example                  # Environment variables template
+└── .env.development              # Development environment
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠 Development Commands
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Using Make (Recommended)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+# Setup
+make help                    # Show all available commands
+make install                 # Install all dependencies
+make setup                   # Complete project setup
 
-## Learn More
+# Development
+make dev                     # Start both frontend and backend
+make dev-frontend            # Start only frontend
+make dev-backend             # Start only backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Testing
+make test                    # Run all tests
+make test-frontend           # Frontend tests only
+make test-backend            # Backend tests only
+make test-e2e               # End-to-end tests
+make test-watch             # Tests in watch mode
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Code Quality
+make lint                    # Run linting
+make lint-fix               # Fix linting issues
+make security-scan          # Security vulnerability scan
+
+# Building
+make build                   # Build both applications
+make build-frontend         # Build frontend only
+make build-backend          # Build backend only
+
+# Docker Operations
+make docker-build           # Build Docker images
+make docker-run             # Run production containers
+make docker-dev             # Run development containers
+make docker-stop            # Stop all containers
+make docker-logs            # View container logs
+make docker-clean           # Clean Docker resources
+
+# Kubernetes
+make k8s-deploy             # Deploy to Kubernetes
+make k8s-status             # Check deployment status
+make k8s-logs               # View Kubernetes logs
+make k8s-clean              # Clean Kubernetes resources
+
+# Database
+make db-migrate             # Run migrations
+make db-seed                # Seed database
+make db-reset               # Reset database
+
+# Utilities
+make clean                  # Clean build artifacts
+make health-check           # Check application health
+make ci                     # Simulate CI/CD locally
+```
+
+### Manual Commands
+
+```bash
+# Frontend
+cd frontend
+npm run dev                 # Development server
+npm run build               # Production build
+npm run test                # Run tests
+npm run lint                # Linting
+
+# Backend
+cd backend
+npm run start:dev           # Development server
+npm run build               # Production build
+npm run test                # Run tests
+npm run test:e2e           # E2E tests
+npm run lint                # Linting
+```
+
+## 🐳 Docker Usage
+
+### Development Environment
+
+```bash
+# Start development with hot reload
+docker-compose -f docker-compose.dev.yml up
+
+# Build development images
+docker-compose -f docker-compose.dev.yml build
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f
+```
+
+### Production Environment
+
+```bash
+# Start production environment
+docker-compose up -d
+
+# Build production images
+docker-compose build
+
+# View logs
+docker-compose logs -f
+
+# Scale services
+docker-compose up -d --scale frontend=3 --scale backend=2
+```
+
+## ☸️ Kubernetes Deployment
+
+### Prerequisites
+
+- Kubernetes cluster (EKS, GKE, AKS, or local)
+- kubectl configured
+- Ingress controller (nginx-ingress recommended)
+- Cert-manager (for SSL certificates)
+
+### Quick Deployment
+
+```bash
+# Using the deployment script
+chmod +x k8s-deploy.sh
+./k8s-deploy.sh deploy
+
+# Check status
+./k8s-deploy.sh status
+
+# View logs
+./k8s-deploy.sh logs
+
+# Health check
+./k8s-deploy.sh health
+```
+
+### Manual Deployment
+
+```bash
+# Apply manifests in order
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/configmap.yaml
+kubectl apply -f k8s/secrets.yaml
+kubectl apply -f k8s/postgres-deployment.yaml
+kubectl apply -f k8s/redis-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/backend-service.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/frontend-service.yaml
+kubectl apply -f k8s/ingress.yaml
+
+# Monitor deployment
+kubectl get pods -n smart-pig-defi -w
+```
+
+### Configuration
+
+1. **Update Secrets**
+
+   ```bash
+   # Edit k8s/secrets.yaml with base64 encoded values
+   echo -n "your-secret" | base64
+   ```
+
+2. **Configure Ingress**
+
+   ```bash
+   # Update k8s/ingress.yaml with your domain
+   # Install cert-manager for SSL
+   kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
+   ```
+
+3. **Set Resource Limits**
+   ```bash
+   # Adjust resources in deployment files based on your cluster capacity
+   ```
+
+## 🔄 CI/CD Pipeline
+
+### GitHub Actions Features
+
+- ✅ Automated testing (frontend & backend)
+- ✅ Code linting and formatting
+- ✅ Security vulnerability scanning
+- ✅ Docker image building (multi-arch)
+- ✅ Container security scanning
+- ✅ Automatic deployment to Kubernetes
+- ✅ Environment-specific deployments
+
+### Pipeline Stages
+
+1. **Test Phase**
+   - Frontend: Jest tests with coverage
+   - Backend: Jest unit tests and e2e tests
+   - Linting and type checking
+
+2. **Security Phase**
+   - Trivy vulnerability scanning
+   - Dependency audit
+
+3. **Build Phase**
+   - Multi-stage Docker builds
+   - Multi-architecture support (amd64, arm64)
+   - Image optimization and caching
+
+4. **Deploy Phase**
+   - Kubernetes deployment
+   - Health checks and rollback
+   - Environment verification
+
+### Environment Setup
+
+1. **GitHub Secrets**
+
+   ```
+   AWS_ACCESS_KEY_ID=your-aws-key
+   AWS_SECRET_ACCESS_KEY=your-aws-secret
+   AWS_REGION=us-west-2
+   EKS_CLUSTER_NAME=smart-pig-cluster
+   ```
+
+2. **Environment Variables**
+   ```bash
+   # Copy and customize environment files
+   cp .env.example .env
+   cp .env.development .env.local
+   ```
+
+## 🏗 Architecture
+
+### Frontend (React + Vite)
+
+- **Framework**: React 19 with TypeScript
+- **Build Tool**: Vite for fast development
+- **Styling**: TailwindCSS v4
+- **Testing**: Jest + React Testing Library
+- **Production**: Nginx with security headers
+
+### Backend (NestJS)
+
+- **Framework**: NestJS with TypeScript
+- **Architecture**: Modular design with controllers/services
+- **Database**: PostgreSQL with TypeORM
+- **Caching**: Redis for session/data caching
+- **Testing**: Jest for unit/integration tests
+
+### Infrastructure
+
+- **Containerization**: Docker with multi-stage builds
+- **Orchestration**: Kubernetes with high availability
+- **Load Balancing**: Nginx Ingress Controller
+- **SSL/TLS**: Cert-manager with Let's Encrypt
+- **Monitoring**: Built-in health checks and logging
+
+## 🔧 Configuration
+
+### Environment Variables
+
+**Frontend (.env)**
+
+```bash
+VITE_API_URL=https://api.smartpig.com
+VITE_STELLAR_NETWORK=public
+VITE_HORIZON_URL=https://horizon.stellar.org
+```
+
+**Backend (.env)**
+
+```bash
+NODE_ENV=production
+PORT=3000
+DATABASE_URL=postgresql://user:pass@host:5432/db
+JWT_SECRET=your-super-secure-secret
+STELLAR_NETWORK=public
+REDIS_URL=redis://redis:6379
+```
+
+### Security Configuration
+
+1. **Container Security**
+   - Non-root users
+   - Read-only filesystems
+   - Minimal base images
+   - Security scanning
+
+2. **Network Security**
+   - Nginx security headers
+   - CORS configuration
+   - Rate limiting
+   - SSL/TLS termination
+
+3. **Application Security**
+   - JWT authentication
+   - Input validation
+   - SQL injection prevention
+   - XSS protection
+
+## 📊 Monitoring & Health Checks
+
+### Health Endpoints
+
+- `GET /health` - Basic health status
+- `GET /health/ready` - Readiness probe
+- `GET /health/live` - Liveness probe
+
+### Kubernetes Probes
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health/live
+    port: 3000
+  initialDelaySeconds: 30
+
+readinessProbe:
+  httpGet:
+    path: /health/ready
+    port: 3000
+  initialDelaySeconds: 5
+```
+
+### Logging
+
+- Structured JSON logging
+- Log aggregation ready
+- Configurable log levels
+- Request/response logging
+
+## 🚀 Deployment Strategies
+
+### Blue-Green Deployment
+
+```bash
+# Deploy to staging
+kubectl apply -f k8s/ --dry-run=client
+
+# Switch traffic
+kubectl patch service smart-pig-frontend -p '{"spec":{"selector":{"version":"green"}}}'
+```
+
+### Rolling Updates
+
+```bash
+# Update image
+kubectl set image deployment/smart-pig-backend backend=new-image:tag
+
+# Monitor rollout
+kubectl rollout status deployment/smart-pig-backend
+```
+
+### Canary Deployment
+
+```bash
+# Deploy canary version
+kubectl apply -f k8s/canary/
+
+# Gradually increase traffic
+# Monitor metrics and errors
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Container Build Fails**
+
+   ```bash
+   # Check Docker logs
+   docker-compose logs --tail=50
+
+   # Rebuild without cache
+   docker-compose build --no-cache
+   ```
+
+2. **Kubernetes Pod Crashes**
+
+   ```bash
+   # Check pod logs
+   kubectl logs -l app=smart-pig-backend -n smart-pig-defi
+
+   # Describe pod for events
+   kubectl describe pod <pod-name> -n smart-pig-defi
+   ```
+
+3. **Health Check Failures**
+
+   ```bash
+   # Test health endpoints
+   curl http://localhost:3000/health
+
+   # Check service connectivity
+   kubectl exec -it <pod-name> -- curl localhost:3000/health
+   ```
+
+### Debug Commands
+
+```bash
+# Container debugging
+make docker-logs
+docker exec -it <container> /bin/sh
+
+# Kubernetes debugging
+kubectl exec -it <pod> -n smart-pig-defi -- /bin/sh
+kubectl port-forward <pod> 3000:3000 -n smart-pig-defi
+
+# Application debugging
+make dev-backend  # Runs with debugger attached
+npm run start:debug  # Backend with debugging
+```
+
+## 📈 Performance Optimization
+
+### Frontend Optimizations
+
+- Code splitting with React.lazy
+- Asset optimization with Vite
+- Gzip compression in Nginx
+- Browser caching strategies
+
+### Backend Optimizations
+
+- Connection pooling
+- Redis caching
+- Query optimization
+- Response compression
+
+### Infrastructure Optimizations
+
+- Horizontal Pod Autoscaling
+- Resource limits and requests
+- Load balancing strategies
+- CDN integration
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make changes and add tests
+4. Run the full test suite: `make ci`
+5. Submit a pull request
+
+### Development Workflow
+
+```bash
+# Start development
+make setup
+make docker-dev
+
+# Make changes
+# ... edit code ...
+
+# Test changes
+make test
+make lint
+
+# Build and test containers
+make docker-build
+make health-check
+
+# Deploy to staging
+./k8s-deploy.sh deploy
+```

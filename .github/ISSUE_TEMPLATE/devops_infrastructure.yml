@@ -1,0 +1,276 @@
+---
+name: 🚀 DevOps / Infrastructure
+about: Report infrastructure, deployment, or operational issues
+title: '[DEVOPS] '
+labels: ['devops', 'infrastructure', 'needs-triage']
+assignees: ''
+---
+
+## 🚀 DevOps / Infrastructure Issue
+
+### 🔧 Issue Type
+**What type of infrastructure issue are you reporting?**
+
+- [ ] 🐳 **Docker Issues**
+  - [ ] Container build failures
+  - [ ] Image optimization
+  - [ ] Multi-stage build problems
+  - [ ] Health check failures
+  - [ ] Resource usage issues
+
+- [ ] ☸️ **Kubernetes Issues**
+  - [ ] Pod crashes/restarts
+  - [ ] Service connectivity
+  - [ ] Ingress configuration
+  - [ ] Resource limits/requests
+  - [ ] ConfigMap/Secret issues
+  - [ ] Persistent volume problems
+  - [ ] Autoscaling issues
+
+- [ ] 🔄 **CI/CD Pipeline Issues**
+  - [ ] GitHub Actions failures
+  - [ ] Build process problems
+  - [ ] Test execution issues
+  - [ ] Deployment failures
+  - [ ] Security scanning problems
+  - [ ] Image registry issues
+
+- [ ] 🌐 **Networking Issues**
+  - [ ] Load balancing problems
+  - [ ] DNS resolution
+  - [ ] SSL/TLS certificate issues
+  - [ ] Firewall/security groups
+  - [ ] Service mesh problems
+
+- [ ] 💾 **Database Issues**
+  - [ ] PostgreSQL configuration
+  - [ ] Connection pooling
+  - [ ] Performance problems
+  - [ ] Backup/restore issues
+  - [ ] Migration problems
+
+- [ ] 📊 **Monitoring/Logging**
+  - [ ] Log aggregation
+  - [ ] Metrics collection
+  - [ ] Alerting setup
+  - [ ] Dashboard configuration
+  - [ ] Performance monitoring
+
+- [ ] 🔒 **Security/Compliance**
+  - [ ] Vulnerability scanning
+  - [ ] Secret management
+  - [ ] Access control
+  - [ ] Compliance requirements
+  - [ ] Security policies
+
+## 🎯 Environment Details
+
+### 🌍 Affected Environment
+- [ ] 🔴 Production
+- [ ] 🟡 Staging
+- [ ] 🟢 Development
+- [ ] 🔵 Local development
+- [ ] ⚫ All environments
+
+### 🏗 Infrastructure Components
+**Which components are affected?**
+
+#### Frontend Infrastructure
+- [ ] React application container
+- [ ] Nginx web server
+- [ ] Static asset serving
+- [ ] CDN configuration
+- [ ] Load balancer
+
+#### Backend Infrastructure
+- [ ] NestJS application container
+- [ ] API gateway
+- [ ] Database connections
+- [ ] Redis cache
+- [ ] Background job processing
+
+#### Data Layer
+- [ ] PostgreSQL database
+- [ ] Redis cache
+- [ ] Backup systems
+- [ ] Data migration tools
+
+#### External Services
+- [ ] Stellar network connectivity
+- [ ] PIX payment integration
+- [ ] Third-party APIs
+- [ ] Monitoring services
+
+## 📋 Issue Description
+**Provide a detailed description of the infrastructure issue:**
+
+### Current Behavior
+**What is currently happening?**
+
+### Expected Behavior
+**What should be happening?**
+
+### Impact Assessment
+**What is the impact of this issue?**
+
+- [ ] 🔴 **Critical** - System down, complete service unavailable
+- [ ] 🟠 **High** - Major functionality affected, significant user impact
+- [ ] 🟡 **Medium** - Some functionality affected, moderate user impact
+- [ ] 🟢 **Low** - Minor issue, minimal user impact
+
+### Affected Users
+- [ ] All users
+- [ ] Specific user groups: ___________
+- [ ] Internal team members
+- [ ] No users affected (internal issue)
+
+## 🔍 Technical Details
+
+### 📊 System Resources
+**Current resource usage (if applicable):**
+- **CPU Usage:** 
+- **Memory Usage:** 
+- **Storage Usage:** 
+- **Network I/O:** 
+
+### 🔧 Configuration
+**Relevant configuration details:**
+
+```yaml
+# Paste relevant configuration files, manifests, or settings
+```
+
+### 📝 Error Messages/Logs
+**Include relevant error messages, log entries, or stack traces:**
+
+```
+Paste error logs here
+```
+
+### 🕐 Timeline
+- **Issue Started:** 
+- **Last Known Good State:** 
+- **Recent Changes:** 
+
+## 🛠 Troubleshooting Steps Taken
+**What troubleshooting steps have already been attempted?**
+
+- [ ] Checked application logs
+- [ ] Reviewed system metrics
+- [ ] Restarted services
+- [ ] Checked resource usage
+- [ ] Verified configuration
+- [ ] Tested connectivity
+- [ ] Reviewed recent deployments
+- [ ] Checked external dependencies
+
+### Commands Executed
+```bash
+# List any diagnostic commands that were run
+```
+
+### Results
+**What were the results of the troubleshooting steps?**
+
+## 🔧 Proposed Solution
+**Do you have a proposed solution or workaround?**
+
+### Immediate Fix
+**What can be done to resolve this immediately?**
+
+### Long-term Solution
+**What should be done to prevent this in the future?**
+
+### Implementation Plan
+1. Step 1: 
+2. Step 2: 
+3. Step 3: 
+
+## 📈 Monitoring & Alerting
+**What monitoring or alerting should be in place?**
+
+- [ ] Add health checks
+- [ ] Set up alerts
+- [ ] Implement logging
+- [ ] Create dashboards
+- [ ] Performance monitoring
+
+## 🔄 Testing Requirements
+**How should the fix be tested?**
+
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] Load testing
+- [ ] Security testing
+- [ ] User acceptance testing
+
+### Test Environment
+- [ ] Can be tested in development
+- [ ] Requires staging environment
+- [ ] Must be tested in production
+- [ ] Requires isolated test environment
+
+## 📚 Documentation Updates
+**What documentation needs to be updated?**
+
+- [ ] Deployment guides
+- [ ] Troubleshooting documentation
+- [ ] Architecture documentation
+- [ ] Runbooks/playbooks
+- [ ] Monitoring setup guides
+
+## 🔗 Dependencies & Related Issues
+**List any dependencies or related issues:**
+
+- **Blocked by:** 
+- **Blocks:** 
+- **Related issues:** 
+
+## 📅 Timeline & Priority
+
+### Business Impact
+- [ ] Revenue affecting
+- [ ] User experience degradation
+- [ ] Development team blocked
+- [ ] Compliance issue
+- [ ] Security concern
+
+### Urgency
+- [ ] 🔴 Emergency (Fix immediately)
+- [ ] 🟠 Urgent (Fix within hours)
+- [ ] 🟡 High (Fix within days)
+- [ ] 🟢 Normal (Fix in next sprint)
+
+### Estimated Effort
+- [ ] 🟢 Small (< 4 hours)
+- [ ] 🟡 Medium (1-2 days)
+- [ ] 🟠 Large (3-5 days)
+- [ ] 🔴 Extra Large (> 1 week)
+
+## 🌐 External Dependencies
+**Any external factors that might affect resolution?**
+
+- [ ] Cloud provider issues
+- [ ] Third-party service outages
+- [ ] Network provider issues
+- [ ] Vendor support required
+- [ ] Scheduled maintenance windows
+
+## 📊 Success Criteria
+**How will we know this issue is resolved?**
+
+- [ ] Services are healthy and responsive
+- [ ] Metrics return to normal levels
+- [ ] No error messages in logs
+- [ ] User functionality restored
+- [ ] Performance meets SLA requirements
+- [ ] Monitoring shows green status
+
+---
+
+**🚨 For Critical Issues:**
+If this is a production emergency, please also:
+1. Contact the on-call engineer immediately
+2. Update the incident channel in Slack
+3. Notify stakeholders per the incident response plan
+4. Document all actions taken for post-incident review

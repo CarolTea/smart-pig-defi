@@ -1,0 +1,342 @@
+---
+name: ⚡ Performance Issue
+about: Report performance problems or optimization opportunities
+title: '[PERFORMANCE] '
+labels: ['performance', 'optimization', 'needs-triage']
+assignees: ''
+---
+
+## ⚡ Performance Issue Report
+
+### 🎯 Performance Problem Type
+**What type of performance issue are you experiencing?**
+
+- [ ] 🐌 **Slow Response Times**
+  - [ ] API endpoints
+  - [ ] Page load times
+  - [ ] Database queries
+  - [ ] Asset loading
+  - [ ] Network requests
+
+- [ ] 🔄 **High Resource Usage**
+  - [ ] CPU utilization
+  - [ ] Memory consumption
+  - [ ] Network bandwidth
+  - [ ] Database connections
+  - [ ] Storage I/O
+
+- [ ] 📱 **Frontend Performance**
+  - [ ] Component rendering
+  - [ ] Bundle size
+  - [ ] JavaScript execution
+  - [ ] CSS performance
+  - [ ] Image optimization
+
+- [ ] 🖥 **Backend Performance**
+  - [ ] API response times
+  - [ ] Database query performance
+  - [ ] Background job processing
+  - [ ] Cache efficiency
+  - [ ] Microservice communication
+
+- [ ] 🏗 **Infrastructure Performance**
+  - [ ] Container startup times
+  - [ ] Load balancer efficiency
+  - [ ] Auto-scaling responsiveness
+  - [ ] CDN performance
+  - [ ] DNS resolution
+
+## 📊 Performance Metrics
+
+### Current Performance
+**What are the current performance metrics?**
+
+#### Response Times
+- **Average API response time:** _____ ms
+- **95th percentile response time:** _____ ms
+- **Page load time:** _____ seconds
+- **Time to first byte (TTFB):** _____ ms
+- **First contentful paint (FCP):** _____ ms
+- **Largest contentful paint (LCP):** _____ ms
+
+#### Resource Usage
+- **CPU usage:** _____%
+- **Memory usage:** _____ MB / _____%
+- **Network throughput:** _____ MB/s
+- **Database connections:** _____
+- **Cache hit ratio:** _____%
+
+#### User Experience Metrics
+- **Core Web Vitals Score:** _____
+- **Google PageSpeed Score:** _____
+- **Lighthouse Performance Score:** _____
+
+### Expected Performance
+**What should the performance metrics be?**
+
+#### Target Metrics
+- **Target API response time:** _____ ms
+- **Target page load time:** _____ seconds
+- **Target CPU usage:** _____%
+- **Target memory usage:** _____%
+
+## 🔍 Affected Components
+
+### Frontend Components
+- [ ] React application
+- [ ] Vite build process
+- [ ] TailwindCSS styling
+- [ ] JavaScript bundles
+- [ ] Image assets
+- [ ] Web fonts
+- [ ] Third-party libraries
+
+### Backend Components
+- [ ] NestJS application
+- [ ] API endpoints
+- [ ] Database queries
+- [ ] Redis cache
+- [ ] Authentication system
+- [ ] File uploads
+- [ ] Background jobs
+
+### External Services
+- [ ] Stellar network calls
+- [ ] PIX payment integration
+- [ ] Third-party APIs
+- [ ] CDN performance
+- [ ] Database performance
+
+### Infrastructure
+- [ ] Docker containers
+- [ ] Kubernetes pods
+- [ ] Load balancers
+- [ ] Ingress controllers
+- [ ] Persistent volumes
+
+## 🌍 Environment Information
+
+### Environment
+- [ ] Production
+- [ ] Staging
+- [ ] Development
+- [ ] Local development
+
+### Scale Information
+- **Number of concurrent users:** _____
+- **Requests per minute:** _____
+- **Data volume:** _____
+- **Geographic distribution:** _____
+
+### Browser/Device Information (for frontend issues)
+- **Browser:** [e.g., Chrome 120, Firefox 118]
+- **Device type:** [e.g., Desktop, Mobile, Tablet]
+- **Operating System:** [e.g., Windows 11, macOS 14, iOS 17]
+- **Network connection:** [e.g., WiFi, 4G, 5G, Cable]
+
+## 📈 Performance Analysis
+
+### When Does the Issue Occur?
+- [ ] Constantly
+- [ ] During peak hours
+- [ ] With large datasets
+- [ ] On specific pages/endpoints
+- [ ] After specific actions
+- [ ] On first load only
+- [ ] After extended usage
+
+### Traffic Patterns
+**Describe the traffic patterns when performance issues occur:**
+
+- **Peak usage times:** _____
+- **Number of concurrent users:** _____
+- **Geographic distribution:** _____
+- **User behavior patterns:** _____
+
+### Performance Trends
+- [ ] Performance has degraded over time
+- [ ] Performance was always poor
+- [ ] Performance degraded after specific change
+- [ ] Performance is inconsistent
+- [ ] Performance only affects certain users
+
+## 🔧 Technical Details
+
+### Profiling Data
+**Include any profiling data, metrics, or benchmarks:**
+
+```
+Paste profiling results, timing data, or performance logs here
+```
+
+### Network Analysis
+**For network-related performance issues:**
+
+```
+Include network timing, waterfall charts, or CDN analysis
+```
+
+### Database Performance
+**For database-related issues:**
+
+```sql
+-- Include slow query logs, execution plans, or database metrics
+```
+
+### Code Hotspots
+**Identify any specific code areas that may be causing performance issues:**
+
+- **File/Component:** _____
+- **Function/Method:** _____
+- **Database query:** _____
+- **API endpoint:** _____
+
+## 🛠 Optimization Opportunities
+
+### Frontend Optimizations
+- [ ] Code splitting
+- [ ] Lazy loading
+- [ ] Image optimization
+- [ ] Bundle size reduction
+- [ ] Caching strategies
+- [ ] Service worker implementation
+- [ ] Tree shaking improvements
+
+### Backend Optimizations
+- [ ] Database query optimization
+- [ ] Caching implementation
+- [ ] Algorithm improvements
+- [ ] Connection pooling
+- [ ] Asynchronous processing
+- [ ] Response compression
+
+### Infrastructure Optimizations
+- [ ] Resource scaling
+- [ ] Load balancer tuning
+- [ ] CDN configuration
+- [ ] Container optimization
+- [ ] Network optimization
+- [ ] Database tuning
+
+## 🧪 Performance Testing
+
+### Testing Done
+**What performance testing has been completed?**
+
+- [ ] Load testing
+- [ ] Stress testing
+- [ ] Spike testing
+- [ ] Volume testing
+- [ ] Browser performance testing
+- [ ] Mobile performance testing
+
+### Testing Tools Used
+- [ ] Lighthouse
+- [ ] WebPageTest
+- [ ] Chrome DevTools
+- [ ] Apache JMeter
+- [ ] Artillery
+- [ ] k6
+- [ ] New Relic
+- [ ] DataDog
+
+### Test Results
+**Include relevant test results:**
+
+```
+Paste performance test results here
+```
+
+## 📋 Reproduction Steps
+**Steps to reproduce the performance issue:**
+
+1. Navigate to _____
+2. Perform action _____
+3. Measure _____
+4. Observe performance issue
+
+### Reproducibility
+- [ ] Happens every time
+- [ ] Happens sometimes
+- [ ] Happens under specific conditions
+- [ ] Difficult to reproduce
+
+## 💡 Proposed Solutions
+
+### Short-term Fixes
+**What can be done immediately to improve performance?**
+
+1. _____
+2. _____
+3. _____
+
+### Long-term Optimizations
+**What architectural or code changes would provide lasting improvements?**
+
+1. _____
+2. _____
+3. _____
+
+### Alternative Approaches
+**Are there alternative implementations that could improve performance?**
+
+## 📊 Success Criteria
+**How will we measure success for performance improvements?**
+
+### Performance Targets
+- [ ] Reduce API response time by _____%
+- [ ] Improve page load time to under _____ seconds
+- [ ] Achieve Core Web Vitals score of _____
+- [ ] Reduce resource usage by _____%
+- [ ] Improve user satisfaction score
+
+### Measurement Plan
+- [ ] Before/after benchmarks
+- [ ] A/B testing
+- [ ] Continuous monitoring
+- [ ] User feedback collection
+
+## 🔄 Monitoring & Alerting
+**What monitoring should be implemented to prevent future issues?**
+
+- [ ] Response time alerts
+- [ ] Resource usage alerts
+- [ ] Error rate monitoring
+- [ ] User experience tracking
+- [ ] Performance regression detection
+
+## 📅 Priority & Impact
+
+### Business Impact
+- [ ] User experience degradation
+- [ ] Increased bounce rate
+- [ ] Higher infrastructure costs
+- [ ] SEO impact
+- [ ] Revenue impact
+- [ ] Competitive disadvantage
+
+### Priority Level
+- [ ] 🔴 Critical (Urgent optimization needed)
+- [ ] 🟠 High (Significant user impact)
+- [ ] 🟡 Medium (Noticeable but manageable)
+- [ ] 🟢 Low (Optimization opportunity)
+
+### Estimated Effort
+- [ ] 🟢 Small (< 1 week)
+- [ ] 🟡 Medium (1-2 weeks)
+- [ ] 🟠 Large (2-4 weeks)
+- [ ] 🔴 Extra Large (> 1 month)
+
+## 🔗 Related Issues
+**Link any related performance issues or optimization tasks:**
+
+## 📸 Screenshots/Evidence
+**Include screenshots, charts, or other evidence of the performance issue:**
+
+---
+
+**📈 Performance Optimization Notes:**
+- Consider user experience impact when prioritizing optimizations
+- Measure twice, optimize once - ensure changes actually improve performance
+- Monitor for performance regressions after changes
+- Balance optimization effort with business value

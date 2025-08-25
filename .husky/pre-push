@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Get current branch name
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Run tests before pushing to main or develop branches
+if [ "$current_branch" = "main" ] || [ "$current_branch" = "develop" ]; then
+  echo "🧪 Running tests before pushing to $current_branch..."
+  npm run test
+  
+  if [ $? -ne 0 ]; then
+    echo "❌ Tests failed! Push aborted."
+    exit 1
+  fi
+  
+  echo "✅ All tests passed!"
+fi
+
+# Check for semantic release dry run on main branch
+if [ "$current_branch" = "main" ]; then
+  echo "🔍 Running semantic-release dry run..."
+  npm run release:dry
+  
+  if [ $? -ne 0 ]; then
+    echo "❌ Semantic release dry run failed! Please check your commits."
+    exit 1
+  fi
+  
+  echo "✅ Semantic release validation passed!"
+fi
+
+echo "✅ Pre-push checks completed successfully!"

@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-pig-backend-service
+  namespace: smart-pig-defi
+  labels:
+    app: smart-pig-backend
+    tier: backend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+  selector:
+    app: smart-pig-backend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-pig-backend-nodeport
+  namespace: smart-pig-defi
+  labels:
+    app: smart-pig-backend
+    tier: backend
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30300
+      protocol: TCP
+      name: http
+  selector:
+    app: smart-pig-backend

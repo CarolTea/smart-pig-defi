@@ -1,0 +1,496 @@
+name: Smart Pig DeFi CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_FRONTEND: ${{ github.repository }}-frontend
+  IMAGE_NAME_BACKEND: ${{ github.repository }}-backend
+  IMAGE_NAME_DOCS: ${{ github.repository }}-docs
+
+jobs:
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci --legacy-peer-deps
+
+      - name: Run frontend linting
+        working-directory: ./frontend
+        run: npm run lint
+
+      - name: Run frontend type checking
+        working-directory: ./frontend
+        run: npm run type-check
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm run test:ci
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Upload frontend coverage
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./frontend/coverage
+          flags: frontend
+
+  test-backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Run backend linting
+        working-directory: ./backend
+        run: npm run lint
+
+      - name: Run backend type checking
+        working-directory: ./backend
+        run: npm run type-check
+
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm run test:ci
+
+      - name: Run backend e2e tests
+        working-directory: ./backend
+        run: npm run test:e2e
+
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build
+
+      - name: Upload backend coverage
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./backend/coverage
+          flags: backend
+
+  test-docs:
+    name: Test Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: docs/package-lock.json
+
+      - name: Install docs dependencies
+        working-directory: ./docs
+        run: npm ci
+
+      - name: Run docs type checking
+        working-directory: ./docs
+        run: npm run typecheck
+
+      - name: Build documentation
+        working-directory: ./docs
+        run: npm run build
+
+      - name: Upload docs build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-build
+          path: docs/build/
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  semantic-release:
+    name: Semantic Release
+    needs: [test-frontend, test-backend, test-docs, security-scan]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write
+    outputs:
+      new-release-published: ${{ steps.semantic.outputs.new-release-published }}
+      new-release-version: ${{ steps.semantic.outputs.new-release-version }}
+      new-release-major-version: ${{ steps.semantic.outputs.new-release-major-version }}
+      new-release-minor-version: ${{ steps.semantic.outputs.new-release-minor-version }}
+      new-release-patch-version: ${{ steps.semantic.outputs.new-release-patch-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Make sync-versions script executable
+        run: chmod +x scripts/sync-versions.js
+
+      - name: Run semantic release
+        id: semantic
+        run: npm run release:ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-and-push:
+    name: Build and Push Docker Images
+    needs: [semantic-release]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && (needs.semantic-release.outputs.new-release-published == 'true' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Get release version
+        id: version
+        run: |
+          if [ "${{ needs.semantic-release.outputs.new-release-published }}" == "true" ]; then
+            echo "version=${{ needs.semantic-release.outputs.new-release-version }}" >> $GITHUB_OUTPUT
+            echo "version_tag=v${{ needs.semantic-release.outputs.new-release-version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+            echo "version_tag=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract metadata for frontend
+        id: meta-frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version_tag }},enable=${{ needs.semantic-release.outputs.new-release-published == 'true' }}
+
+      - name: Extract metadata for backend
+        id: meta-backend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_BACKEND }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version_tag }},enable=${{ needs.semantic-release.outputs.new-release-published == 'true' }}
+
+      - name: Extract metadata for docs
+        id: meta-docs
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_DOCS }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version_tag }},enable=${{ needs.semantic-release.outputs.new-release-published == 'true' }}
+
+      - name: Build and push frontend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ steps.version.outputs.version }}
+
+      - name: Build and push backend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: ${{ steps.meta-backend.outputs.tags }}
+          labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ steps.version.outputs.version }}
+
+      - name: Build and push docs Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docs
+          file: ./docs/Dockerfile
+          push: true
+          tags: ${{ steps.meta-docs.outputs.tags }}
+          labels: ${{ steps.meta-docs.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ steps.version.outputs.version }}
+
+      - name: Scan frontend image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}:${{ steps.version.outputs.version_tag }}
+          format: 'sarif'
+          output: 'trivy-frontend.sarif'
+
+      - name: Scan backend image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_BACKEND }}:${{ steps.version.outputs.version_tag }}
+          format: 'sarif'
+          output: 'trivy-backend.sarif'
+
+      - name: Scan docs image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_DOCS }}:${{ steps.version.outputs.version_tag }}
+          format: 'sarif'
+          output: 'trivy-docs.sarif'
+
+      - name: Upload security scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-frontend.sarif
+        continue-on-error: true
+
+      - name: Upload backend scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-backend.sarif
+        continue-on-error: true
+
+      - name: Upload docs scan results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-docs.sarif
+        continue-on-error: true
+
+  deploy-k8s:
+    name: Deploy to Kubernetes
+    needs: [semantic-release, build-and-push]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && needs.semantic-release.outputs.new-release-published == 'true' && vars.ENABLE_AWS_DEPLOYMENT == 'true'
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get release version
+        id: version
+        run: |
+          echo "version=${{ needs.semantic-release.outputs.new-release-version }}" >> $GITHUB_OUTPUT
+          echo "version_tag=v${{ needs.semantic-release.outputs.new-release-version }}" >> $GITHUB_OUTPUT
+
+      - name: Configure AWS credentials
+        if: vars.ENABLE_AWS_DEPLOYMENT == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Update kubeconfig
+        if: vars.ENABLE_AWS_DEPLOYMENT == 'true'
+        run: |
+          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+
+      - name: Deploy to Kubernetes
+        if: vars.ENABLE_AWS_DEPLOYMENT == 'true'
+        run: |
+          # Update image tags in Kubernetes manifests with new version
+          sed -i "s|IMAGE_TAG|${{ steps.version.outputs.version_tag }}|g" k8s/frontend-deployment.yaml
+          sed -i "s|IMAGE_TAG|${{ steps.version.outputs.version_tag }}|g" k8s/backend-deployment.yaml
+          sed -i "s|IMAGE_TAG|${{ steps.version.outputs.version_tag }}|g" k8s/docs-deployment.yaml
+          
+          # Apply Kubernetes manifests
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/configmap.yaml
+          kubectl apply -f k8s/secrets.yaml
+          kubectl apply -f k8s/frontend-deployment.yaml
+          kubectl apply -f k8s/frontend-service.yaml
+          kubectl apply -f k8s/backend-deployment.yaml
+          kubectl apply -f k8s/backend-service.yaml
+          kubectl apply -f k8s/docs-deployment.yaml
+          kubectl apply -f k8s/docs-service.yaml
+          kubectl apply -f k8s/ingress.yaml
+          
+          # Wait for deployment to complete
+          kubectl rollout status deployment/smart-pig-frontend -n smart-pig-defi --timeout=600s
+          kubectl rollout status deployment/smart-pig-backend -n smart-pig-defi --timeout=600s
+          kubectl rollout status deployment/smart-pig-docs -n smart-pig-defi --timeout=600s
+
+      - name: Skip AWS deployment message
+        if: vars.ENABLE_AWS_DEPLOYMENT != 'true'
+        run: |
+          echo "⚠️ AWS deployment is disabled. To enable:"
+          echo "1. Set up AWS account and EKS cluster"
+          echo "2. Add repository variable ENABLE_AWS_DEPLOYMENT=true"
+          echo "3. Add AWS secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, EKS_CLUSTER_NAME"
+          echo "📦 Docker images have been built and published successfully!"
+
+      - name: Verify deployment
+        if: vars.ENABLE_AWS_DEPLOYMENT == 'true'
+        run: |
+          kubectl get pods -n smart-pig-defi
+          kubectl get services -n smart-pig-defi
+          kubectl get ingress -n smart-pig-defi
+          
+          # Get deployment info
+          echo "📊 Deployment Summary:"
+          echo "Version: ${{ steps.version.outputs.version }}"
+          echo "Frontend Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}:${{ steps.version.outputs.version_tag }}"
+          echo "Backend Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_BACKEND }}:${{ steps.version.outputs.version_tag }}"
+          echo "Docs Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_DOCS }}:${{ steps.version.outputs.version_tag }}"
+
+      - name: Create deployment notification
+        if: vars.ENABLE_AWS_DEPLOYMENT == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: release } = await github.rest.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: "v${{ needs.semantic-release.outputs.new-release-version }}"
+            });
+            
+            await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "v${{ needs.semantic-release.outputs.new-release-version }}",
+              environment: "production",
+              description: `Deployment of version ${{ needs.semantic-release.outputs.new-release-version }}`,
+              auto_merge: false
+            });
+            
+            console.log(`🚀 Successfully deployed version ${{ needs.semantic-release.outputs.new-release-version }} to production!`);
+
+  deploy-docs:
+    name: Deploy Documentation to GitHub Pages
+    needs: [semantic-release, build-and-push]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && needs.semantic-release.outputs.new-release-published == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: docs/package-lock.json
+
+      - name: Install docs dependencies
+        working-directory: ./docs
+        run: npm ci
+
+      - name: Build documentation
+        working-directory: ./docs
+        run: |
+          npm run build
+          echo "📚 Documentation built for version ${{ needs.semantic-release.outputs.new-release-version }}"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -12,7 +12,8 @@ interface StellarAccount {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [stellarAccount, setStellarAccount] = useState<StellarAccount | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isLoading, _setIsLoading] = useState(false);
 
   const handleAuthenticated = (account: StellarAccount) => {
     setStellarAccount(account);

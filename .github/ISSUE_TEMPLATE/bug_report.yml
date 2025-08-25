@@ -1,0 +1,99 @@
+---
+name: 🐛 Bug Report
+about: Create a report to help us improve the Smart Pig DeFi platform
+title: '[BUG] '
+labels: ['bug', 'needs-triage']
+assignees: ''
+---
+
+## 🐛 Bug Description
+**A clear and concise description of what the bug is.**
+
+## 🔄 Steps to Reproduce
+**Steps to reproduce the behavior:**
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+## ✅ Expected Behavior
+**A clear and concise description of what you expected to happen.**
+
+## ❌ Actual Behavior
+**A clear and concise description of what actually happened.**
+
+## 📱 Environment Information
+**Please complete the following information:**
+
+### Frontend
+- **Browser:** [e.g. Chrome, Firefox, Safari]
+- **Browser Version:** [e.g. 22]
+- **Device:** [e.g. Desktop, Mobile, Tablet]
+- **OS:** [e.g. Windows 10, macOS, iOS, Android]
+- **Screen Resolution:** [e.g. 1920x1080]
+
+### Backend/API
+- **Environment:** [e.g. Development, Staging, Production]
+- **Node.js Version:** [e.g. 20.x]
+- **Database:** [e.g. PostgreSQL version]
+
+### Stellar/Blockchain
+- **Network:** [e.g. Testnet, Mainnet]
+- **Wallet Used:** [e.g. Freighter, Albedo, WalletConnect]
+
+## 📸 Screenshots
+**If applicable, add screenshots to help explain your problem.**
+
+## 📋 Error Logs
+**If applicable, add error messages, console logs, or stack traces.**
+
+```
+Paste error logs here
+```
+
+## 🔍 Additional Context
+**Add any other context about the problem here.**
+
+### Frequency
+- [ ] This happens every time
+- [ ] This happens sometimes
+- [ ] This happened once
+
+### Impact
+- [ ] Blocks core functionality
+- [ ] Affects user experience
+- [ ] Minor inconvenience
+- [ ] Enhancement/improvement
+
+### Related Components
+- [ ] Authentication (Login/Register)
+- [ ] Passkey Integration
+- [ ] PIX Deposits
+- [ ] Withdrawals
+- [ ] Stellar Integration
+- [ ] Dashboard/UI
+- [ ] Database
+- [ ] API/Backend
+- [ ] CI/CD Pipeline
+- [ ] Docker/Kubernetes
+
+## 🔗 Related Issues
+**Link any related issues here.**
+
+## 📝 Proposed Solution
+**If you have ideas on how to fix this, please describe them here.**
+
+---
+**Priority:** 
+- [ ] 🔴 Critical (System down, security vulnerability)
+- [ ] 🟠 High (Major feature broken)
+- [ ] 🟡 Medium (Minor feature affected)
+- [ ] 🟢 Low (Cosmetic issue)
+
+**Component:**
+- [ ] Frontend (React/Vite)
+- [ ] Backend (NestJS)
+- [ ] Database (PostgreSQL)
+- [ ] Infrastructure (Docker/K8s)
+- [ ] CI/CD
+- [ ] Documentation

@@ -1,0 +1,51 @@
+# Smart Pig DeFi Documentation Development Dockerfile
+# Optimized for development with hot reload and fast builds
+
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S docusaurus -u 1001 -G nodejs
+
+# Install system dependencies
+RUN apk add --no-cache \
+    git \
+    curl \
+    && rm -rf /var/cache/apk/*
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies with development tools
+RUN npm ci && npm cache clean --force
+
+# Change ownership to non-root user
+RUN chown -R docusaurus:nodejs /app
+USER docusaurus
+
+# Copy source code
+COPY --chown=docusaurus:nodejs . .
+
+# Expose port for development server
+EXPOSE 3000
+
+# Set environment variables for development
+ENV NODE_ENV=development
+ENV DOCUSAURUS_DEV_SERVER_HOST=0.0.0.0
+ENV DOCUSAURUS_DEV_SERVER_PORT=3000
+ENV CHOKIDAR_USEPOLLING=true
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000 || exit 1
+
+# Start development server with hot reload
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0", "--port", "3000"]
+
+# Add labels for metadata
+LABEL maintainer="Team Smart Pig <team@smartpig.com>"
+LABEL description="Smart Pig DeFi Documentation Development - Built with Docusaurus"
+LABEL environment="development"

@@ -1,0 +1,141 @@
+{
+  "name": "smart-pig-defi",
+  "version": "1.0.0",
+  "description": "Smart Pig DeFi - A decentralized finance application built on Stellar network",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CarolTea/smart-pig-defi.git"
+  },
+  "author": {
+    "name": "Team Smart Pig",
+    "url": "https://stellar.org"
+  },
+  "license": "UNLICENSED",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "docs"
+  ],
+  "scripts": {
+    "postinstall": "npm run setup",
+    "setup": "npm install --prefix frontend --legacy-peer-deps && npm install --prefix backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run start:dev --prefix backend",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:frontend": "npm run test:ci --prefix frontend",
+    "test:backend": "npm run test:ci --prefix backend",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:frontend": "npm run lint --prefix frontend",
+    "lint:backend": "npm run lint --prefix backend",
+    "lint:fix": "npm run lint:fix:backend && npm run lint:fix:frontend",
+    "lint:fix:frontend": "npm run lint:fix --prefix frontend",
+    "lint:fix:backend": "npm run lint:fix --prefix backend",
+    "format": "npm run format:backend && npm run format:frontend",
+    "format:frontend": "npm run format --prefix frontend",
+    "format:backend": "npm run format --prefix backend",
+    "type-check": "npm run type-check:backend && npm run type-check:frontend",
+    "type-check:frontend": "npm run type-check --prefix frontend",
+    "type-check:backend": "npm run type-check --prefix backend",
+    "release": "semantic-release",
+    "release:dry": "semantic-release --dry-run",
+    "release:ci": "semantic-release --ci",
+    "version:sync": "node scripts/sync-versions.js",
+    "version:bump": "npm run version:bump:frontend && npm run version:bump:backend",
+    "version:bump:frontend": "cd frontend && npm version",
+    "version:bump:backend": "cd backend && npm version",
+    "validate": "node scripts/validate-versioning.js",
+    "validate:versioning": "npm run validate",
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
+    "changelog:first": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
+    "commit": "git-cz",
+    "prepare": "husky",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "k8s:deploy": "./k8s-deploy.sh",
+    "clean": "npm run clean:frontend && npm run clean:backend && rm -rf node_modules",
+    "clean:frontend": "cd frontend && rm -rf node_modules dist",
+    "clean:backend": "cd backend && rm -rf node_modules dist"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.4",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "commitizen": "^4.3.1",
+    "concurrently": "^9.2.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "semantic-release": "^24.2.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "feat",
+          "fix",
+          "docs",
+          "style",
+          "refactor",
+          "perf",
+          "test",
+          "build",
+          "ci",
+          "chore",
+          "revert"
+        ]
+      ],
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case",
+          "upper-case"
+        ]
+      ]
+    }
+  },
+  "lint-staged": {
+    "frontend/src/**/*.{js,jsx,ts,tsx}": [
+      "cd frontend && npx eslint --fix",
+      "cd frontend && npx prettier --write"
+    ],
+    "backend/src/**/*.{js,jsx,ts,tsx}": [
+      "cd backend && npx eslint --fix",
+      "cd backend && npx prettier --write"
+    ],
+    "*.{json,md}": [
+      "npx prettier --write"
+    ]
+  },
+  "engines": {
+    "npm": ">=10.9.2",
+    "npx": ">=10.9.2",
+    "node": ">=22.16.0"
+  }
+}

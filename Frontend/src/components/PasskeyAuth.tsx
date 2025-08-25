@@ -32,6 +32,7 @@ const PasskeyAuth: React.FC<PasskeyAuthProps> = ({ onAuthenticated }) => {
         window.navigator.credentials
       );
     } catch (error) {
+      console.error('Error checking passkey support:', error);
       isSupported = false;
     }
     
@@ -91,6 +92,7 @@ const PasskeyAuth: React.FC<PasskeyAuthProps> = ({ onAuthenticated }) => {
 
       onAuthenticated(stellarAccount);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Erro ao criar passkey:', err);
       setError(err.message || 'Erro ao criar passkey. Tente novamente.');
@@ -136,6 +138,7 @@ const PasskeyAuth: React.FC<PasskeyAuthProps> = ({ onAuthenticated }) => {
 
       onAuthenticated(stellarAccount);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Erro no login:', err);
       setError(err.message || 'Erro na autenticação. Tente novamente.');
@@ -145,7 +148,8 @@ const PasskeyAuth: React.FC<PasskeyAuthProps> = ({ onAuthenticated }) => {
   };
 
   // Simular criação de Smart Wallet na Stellar (na prática, usa Passkey Kit)
-  const createStellarSmartWallet = async (credential: PublicKeyCredential): Promise<StellarAccount> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const createStellarSmartWallet = async (_credential: PublicKeyCredential): Promise<StellarAccount> => {
     // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -163,8 +167,8 @@ const PasskeyAuth: React.FC<PasskeyAuthProps> = ({ onAuthenticated }) => {
       balance: 0
     };
   };
-
-  const retrieveStellarAccount = async (credential: PublicKeyCredential): Promise<StellarAccount> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const retrieveStellarAccount = async (_credential: PublicKeyCredential): Promise<StellarAccount> => {
     // Simular busca na rede Stellar
     await new Promise(resolve => setTimeout(resolve, 1500));
 

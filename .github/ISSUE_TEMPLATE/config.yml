@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🚨 Security Vulnerability (Private)
+    url: mailto:security@smartpig.defi
+    about: Report security vulnerabilities privately via email
+  - name: 💬 Community Discussions
+    url: https://github.com/CarolTea/smart-pig-defi/discussions
+    about: Ask questions, share ideas, and discuss with the community
+  - name: 📚 Documentation
+    url: https://github.com/CarolTea/smart-pig-defi/wiki
+    about: Read the project documentation and guides
+  - name: 📊 Project Roadmap
+    url: https://github.com/CarolTea/smart-pig-defi/projects
+    about: View the project roadmap and upcoming features
+  - name: 💡 Feature Ideas & Feedback
+    url: https://github.com/CarolTea/smart-pig-defi/discussions/categories/ideas
+    about: Share your ideas and provide feedback on existing features

@@ -61,7 +61,8 @@ const SmartPig: React.FC<SmartPigProps> = ({ stellarAccount, onLogout }) => {
   };
 
   // Mensagens motivacionais por nível
-  const getMotivationalMessage = (level: number, amount: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const getMotivationalMessage = (level: number, _amount: number) => {
     const messages = [
       { level: 1, message: "🐷 Seu porquinho está começando a crescer! Continue investindo!" },
       { level: 2, message: "🐷✨ Ótimo! Seu porquinho está ficando mais gordo e feliz!" },
@@ -85,8 +86,9 @@ const SmartPig: React.FC<SmartPigProps> = ({ stellarAccount, onLogout }) => {
     }
     setShowPIXModal(true);
   };
-
-  const handleDepositSuccess = (amount: number, txId: string) => {
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleDepositSuccess = (amount: number, _txId: string) => {
     const newBalance = balance + amount;
     setBalance(newBalance);
     
