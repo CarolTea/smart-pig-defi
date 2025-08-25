@@ -1,6 +1,160 @@
-# Smart Pig DeFi - Complete CI/CD & Deployment Guide
+# 🐷 Smart Pig - DeFi Simplificado
 
-🐷💰 A comprehensive DeFi application with modern CI/CD pipeline, Docker containerization, and Kubernetes deployment.
+**"Se qualquer pessoa usa sem ajuda, criamos a solução certa"**
+
+Smart Pig é uma plataforma DeFi que revoluciona o acesso ao yield farming para brasileiros, permitindo investimentos via PIX com retornos de 7-10% ao ano em USDC, usando uma interface gamificada onde um porquinho cresce conforme seus investimentos.
+
+---
+
+## 🎯 Visão Geral
+
+### 💡 O Problema
+
+- **R$ 1,2 trilhão** parados na poupança rendendo apenas 6% a.a.
+- **86%** dos brasileiros querem alternativas à poupança
+- Apenas **3%** da população acessa DeFi
+- DeFi tradicional é **complexo demais** para 95% das pessoas
+
+### 🚀 Nossa Solução: "DeFi Invisível"
+
+- **PIX → USDC → Yield Pools** de forma completamente transparente
+- **Autenticação biométrica** sem senhas ou chaves privadas
+- **Interface gamificada** que torna investir divertido
+- **Compliance total** com regulamentação brasileira
+
+---
+
+## ✨ Funcionalidades
+
+### 🔐 Autenticação Stellar Passkeys
+
+- Login com **Face ID, Touch ID ou Windows Hello**
+- **Smart Wallets** na blockchain Stellar
+- Sem seed phrases ou senhas para memorizar
+- Protocolo **secp256r1** (Stellar Protocol 21)
+
+### 🎮 Interface Gamificada
+
+Porquinho evolutivo com 5 níveis baseados no saldo:
+
+- 🐷 **Nível 1** (R$ 0-500) - Iniciante
+- 🐽 **Nível 2** (R$ 500-2K) - Crescendo
+- 🐖 **Nível 3** (R$ 2K-5K) - Prosperando
+- 🐷👑 **Nível 4** (R$ 5K-15K) - Rico
+- 🐷💎 **Nível 5** (R$ 15K+) - Magnata
+
+### 💸 Sistema PIX Nativo
+
+- **Depósitos instantâneos** via PIX
+- **QR Code** gerado automaticamente
+- **Conversão automática** BRL → USDC
+- **Liquidez instantânea** para saques
+
+### 📊 Rendimentos em Tempo Real
+
+- **7-10% ao ano** em USDC
+- **Proteção cambial** automática
+- **Ganhos visíveis** em tempo real
+- **Histórico detalhado** de transações
+
+---
+
+## 🛠️ Tecnologias
+
+### Frontend
+
+- **React 18** com TypeScript
+- **CSS3** com animações modernas
+- **WebAuthn API** para Passkeys
+- **Responsive Design** mobile-first
+
+### Backend
+
+- **NestJS** com TypeScript
+- **Stellar SDK** para blockchain
+- **PIX Integration** via Stellar Anchors
+- **WebHooks** para status em tempo real
+
+### Blockchain
+
+- **Stellar Network** (Mainnet)
+- **Smart Contracts Soroban**
+- **Aquarius Protocol** para yield pools
+- **USDC** como stablecoin base
+
+---
+
+## 🎨 Design System
+
+### Cores Oficiais
+
+- **Primária**: #FFD700 (Dourado)
+- **Secundária**: #FFEB3B (Amarelo vibrante)
+- **Accent**: #C6FF00 (Verde-amarelo neon)
+- **Background**: Gradiente #1a1a1a → #2A5298
+
+### Componentes
+
+- **Porquinho 3D** como mascote
+- **Moedas douradas** para valor
+- **Animações suaves** (bounce, glow, progress)
+- **Glassmorphism** e gradientes modernos
+
+---
+
+## 📈 Roadmap
+
+### ✅ Fase 1 - Protótipo (Concluída)
+
+- Interface gamificada completa
+- Autenticação Passkeys mockada
+- Sistema PIX simulado
+- Design system implementado
+
+### 🔄 Fase 2 - Integração (Em Desenvolvimento)
+
+- Backend NestJS com Stellar
+- PIX real via Stellar Anchors
+- Smart Wallets funcionais
+- Webhooks e WebSockets
+
+### 🚀 Fase 3 - Produção
+
+- Deploy AWS/Vercel
+- Testes E2E completos
+- Auditoria de segurança
+- Launch oficial
+
+---
+
+## 🤝 Parcerias Estratégicas
+
+- 🏦 **Banco do Brasil** - "Poupança Digital BB"
+- 🏪 **Sicredi** - "Porquinho Cooperativo"
+- ⭐ **Stellar Foundation** - Infraestrutura blockchain
+- 🌊 **Aquarius Protocol** - Pools de liquidez DeFi
+
+---
+
+## 📊 Mercado
+
+- **TAM**: R$ 1,2 trilhão (poupança brasileira)
+- **SAM**: 30M brasileiros com >R$ 10k investidos
+- **Meta 5 anos**: 300K clientes, R$ 4,5B sob gestão
+
+---
+
+## 🔒 Segurança
+
+- ✅ **Stellar Blockchain** com smart contracts auditáveis
+- ✅ **Passkeys WebAuthn** padrão bancário FIDO2
+- ✅ **Criptografia secp256r1** nativa
+- ✅ **Proteção anti-phishing** domain-specific
+- ✅ **Compliance LGPD** total
+
+---
+
+# 📋 Complete CI/CD & Deployment Guide
 
 ## 🚀 Quick Start
 

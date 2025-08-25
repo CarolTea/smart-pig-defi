@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import SmartPig from './components/SmartPig';
 import PasskeyAuth from './components/PasskeyAuth';
+import SmartPigDemo from './components/SmartPigDemo';
+import DemoIndicator from './components/DemoIndicator';
 import './App.css';
 
 interface StellarAccount {
@@ -14,6 +16,8 @@ function App() {
   const [stellarAccount, setStellarAccount] = useState<StellarAccount | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, _setIsLoading] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false); // NOVO
+
 
   const handleAuthenticated = (account: StellarAccount) => {
     setStellarAccount(account);
@@ -71,10 +75,45 @@ function App() {
 
   return (
     <div className="App">
-      <SmartPig 
-        stellarAccount={stellarAccount}
-        onLogout={handleLogout}
+      {/* Componente principal - DEMO ou NORMAL */}
+      {isDemoMode ? (
+        <SmartPigDemo 
+          stellarAccount={stellarAccount}
+          onLogout={handleLogout}
+        />
+      ) : (
+        <SmartPig 
+          stellarAccount={stellarAccount}
+          onLogout={handleLogout}
+        />
+      )}
+      
+      {/* Indicador de demo mode */}
+      <DemoIndicator 
+        isVisible={isDemoMode}
+        position="top-right"
+        showStats={true}
       />
+      
+      {/* Botão para alternar modo */}
+      <button 
+        onClick={() => setIsDemoMode(!isDemoMode)}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          left: '20px',
+          background: isDemoMode ? '#FF4444' : '#00AA00',
+          color: 'white',
+          border: 'none',
+          padding: '10px 15px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 9999,
+          fontWeight: 'bold'
+        }}
+      >
+        {isDemoMode ? '🎬 DEMO ON' : '✅ NORMAL'}
+      </button>
     </div>
   );
 }
