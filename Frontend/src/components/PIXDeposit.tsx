@@ -90,6 +90,7 @@ const PIXDeposit: React.FC<PIXDepositProps> = ({
 
       setStep(data.type === 'interactive_customer_info_needed' ? 'processing' : 'pix-data');
       
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Erro ao processar depósito');
     } finally {

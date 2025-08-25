@@ -18,8 +18,7 @@
     "docs"
   ],
   "scripts": {
-    "postinstall": "npm run setup",
-    "setup": "npm install --prefix frontend --legacy-peer-deps && npm install --prefix backend",
+    "setup": "npm install --prefix frontend --legacy-peer-deps && npm install --prefix backend && npm install --prefix docs",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "npm run dev --prefix frontend",
     "dev:backend": "npm run start:dev --prefix backend",
@@ -74,7 +73,7 @@
     "@semantic-release/npm": "^12.0.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "commitizen": "^4.3.1",
-    "concurrently": "^9.2.0",
+    "concurrently": "^9.2.1",
     "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cz-conventional-changelog": "^3.3.0",

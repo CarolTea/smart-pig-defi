@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Auth.css';
 
 interface RegisterProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onRegister: (userData: any) => void;
   onSwitchToLogin: () => void;
 }
