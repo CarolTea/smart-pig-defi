@@ -30,17 +30,25 @@ jobs:
       - name: Install root dependencies
         run: npm ci --ignore-scripts
 
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci --legacy-peer-deps --ignore-scripts
+
       - name: Run frontend linting
-        run: npm run lint:frontend
+        working-directory: ./frontend
+        run: npm run lint
 
       - name: Run frontend type checking
-        run: npm run type-check:frontend
+        working-directory: ./frontend
+        run: npm run type-check
 
       - name: Run frontend tests
-        run: npm run test:frontend
+        working-directory: ./frontend
+        run: npm run test:ci
 
       - name: Build frontend
-        run: npm run build:frontend
+        working-directory: ./frontend
+        run: npm run build
 
       - name: Upload frontend coverage
         uses: codecov/codecov-action@v4
@@ -65,20 +73,29 @@ jobs:
       - name: Install root dependencies
         run: npm ci --ignore-scripts
 
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci --ignore-scripts
+
       - name: Run backend linting
-        run: npm run lint:backend
+        working-directory: ./backend
+        run: npm run lint
 
       - name: Run backend type checking
-        run: npm run type-check:backend
+        working-directory: ./backend
+        run: npm run type-check
 
       - name: Run backend tests
-        run: npm run test:backend
+        working-directory: ./backend
+        run: npm run test:ci
 
       - name: Run backend e2e tests
-        run: npm run test:e2e --prefix backend
+        working-directory: ./backend
+        run: npm run test:e2e
 
       - name: Build backend
-        run: npm run build:backend
+        working-directory: ./backend
+        run: npm run build
 
       - name: Upload backend coverage
         uses: codecov/codecov-action@v4
@@ -101,6 +118,10 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install root dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install docs dependencies
+        working-directory: ./docs
         run: npm ci --ignore-scripts
 
       - name: Run docs type checking
