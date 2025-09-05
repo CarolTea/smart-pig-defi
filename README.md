@@ -230,7 +230,7 @@ npm run test:e2e
 
 ## 👥 **Time**
 
-- **Carolina** - Product Owner & Frontend Developer
+- **Ana Carolina Tavares (CarolTea)** - Product Owner & Frontend Developer
 - **XXXXXX** - Backend Developer & Stellar Integration
 - **Claude AI** - AI Assistant & Technical Documentation
 
